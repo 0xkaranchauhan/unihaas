@@ -1,7 +1,8 @@
+# UniHaaS - Uniswap v4 Hook-as-a-Service
+
 <p align="center">
   <img src="images/unihaas_banner.png" width="400">
 </p>
-# UniHaaS - Uniswap v4 Hook-as-a-Service
 
 ## Overview
 
