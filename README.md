@@ -38,7 +38,7 @@ Currently, we have implemented **Dynamic Fees**, and the rest of the functionali
 ```sh
 # Clone the repository
 git clone https://github.com/0xkaranchauhan/unihaas.git
-cd uninhaas
+cd unihaas
 
 # Install dependencies
 npm install
@@ -89,4 +89,4 @@ uniHaaS.removeMarketData(poolKey);
 
 ## Contact
 
-For inquiries, reach out via [Twitter](https://x.com/0xkaranchauhan) or [GitHub Issues](https://github.com/0xkaranchauhan/uninhaas/issues).
+For inquiries, reach out via [Twitter](https://x.com/0xkaranchauhan) or [GitHub Issues](https://github.com/0xkaranchauhan/unihaas/issues).
