@@ -1,4 +1,4 @@
-![UniHaaS - No-Code Hook Development](images/unihaas_banner.png){width="300"}
+![UniHaaS - No-Code Hook Development](images/unihaas_banner.png){width="200"}
 # UniHaaS - Uniswap v4 Hook-as-a-Service
 
 ## Overview
