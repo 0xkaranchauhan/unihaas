@@ -1,66 +1,92 @@
-## Foundry
+![UniHaaS - No-Code Hook Development](images/unihaas_banner.png)
+# UniHaaS - Uniswap v4 Hook-as-a-Service
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
 
-Foundry consists of:
+**UniHaaS** (Uniswap Hook-as-a-Service) is a smart contract designed to provide dynamic fee adjustments based on market volatility using Chainlink price feeds. Built for **Uniswap v4**, it enables liquidity providers to benefit from more efficient and adaptive trading fees.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Features
 
-## Documentation
+- **Dynamic Fees**: Adjusts swap fees based on short-term and long-term market volatility.
+- **Chainlink Integration**: Uses Chainlink price feeds to fetch real-time volatility data.
+- **Sigmoid Function**: Implements a flexible fee model using a sigmoid curve for smooth transitions.
+- **Permissioned Hooks**: Implements Uniswap v4 hooks for before swap and initialization.
+- **Modular & Expandable**: Can be extended to include impermanent loss protection, MEV resistance, and other advanced features.
 
-https://book.getfoundry.sh/
+## Current Status
+
+Currently, we have implemented **Dynamic Fees**, and the rest of the functionalities will be added over time.
+
+## How It Works
+
+1. **Fetch Volatility Data**: The contract fetches short-term (24h) and long-term (7d) volatility data from Chainlink price feeds.
+2. **Calculate Dynamic Fee**: Based on market trends, the contract applies a sigmoid function to determine the appropriate fee.
+3. **Adjust Swap Fees**: The computed fee is dynamically set before each swap.
+4. **Update Market Data**: Admins can update or remove volatility data feeds for different pools.
+
+## Installation
+
+### Prerequisites
+
+- **Node.js & NPM**: Required for development and testing.
+- **Foundry**: Recommended for Solidity development.
+- **Uniswap v4 Core & Periphery**: Required dependencies.
+- **Chainlink Contracts**: Needed for fetching market volatility data.
+
+### Setup
+
+```sh
+# Clone the repository
+git clone https://github.com/0xkaranchauhan/unihaas.git
+cd uninhaas
+
+# Install dependencies
+npm install
+```
 
 ## Usage
 
-### Build
+### Get Dynamic Fee
 
-```shell
-$ forge build
+```solidity
+uint24 fee = uniHaaS.computeFee(poolId);
 ```
 
-### Test
+### Update Market Data
 
-```shell
-$ forge test
+```solidity
+uniHaaS.updateMarketData(poolKey, shortFeedAddress, longFeedAddress, precision);
 ```
 
-### Format
+### Remove Market Data
 
-```shell
-$ forge fmt
+```solidity
+uniHaaS.removeMarketData(poolKey);
 ```
 
-### Gas Snapshots
+## Hook Permissions
 
-```shell
-$ forge snapshot
-```
+| Hook             | Status      |
+| ---------------- | ----------- |
+| beforeInitialize | ✅ Enabled  |
+| afterInitialize  | ❌ Disabled |
+| beforeSwap       | ✅ Enabled  |
+| afterSwap        | ❌ Disabled |
 
-### Anvil
+## Future Improvements
 
-```shell
-$ anvil
-```
+- **Impermanent Loss Protection**
+- **MEV Protection**
+- **Auto-Rebalancing Pools**
+- **Cross-Chain Liquidity Integration**
 
-### Deploy
+![Test Results](images/test_results.png)
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+## Contributors
 
-### Cast
+- **Karan Singh Chauhan (karanchauhan.eth)** (Lead Developer)
+- Open for contributions! Feel free to submit PRs.
 
-```shell
-$ cast <subcommand>
-```
+## Contact
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+For inquiries, reach out via [Twitter](https://x.com/0xkaranchauhan) or [GitHub Issues](https://github.com/0xkaranchauhan/uninhaas/issues).
